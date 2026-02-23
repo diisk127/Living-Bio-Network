@@ -12,6 +12,7 @@
 # ภาพรวมระบบแบบ Graph Algorithm
 #### นระบบนี้ จะมอง Node และ Edge ผ่านทฤษฎีกราฟที่ปรับแต่งด้วยกฎทางชีววิทยา:
 
+```mermaid
 graph TD
     %% Node Definitions
     subgraph External_Environment [Organic Waste & Energy]
