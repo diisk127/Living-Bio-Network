@@ -12,13 +12,40 @@
 # ภาพรวมระบบแบบ Graph Algorithm
 #### นระบบนี้ จะมอง Node และ Edge ผ่านทฤษฎีกราฟที่ปรับแต่งด้วยกฎทางชีววิทยา:
 
-```mermaid
 graph TD
-A[Nodes (Biological Hubs)]
-B[Edges (Mycelial Pathways)]
-C[Algorithm (Dynamic Steiner Tree)]
+    %% Node Definitions
+    subgraph External_Environment [Organic Waste & Energy]
+        Waste((Organic Matter))
+    end
 
-A --> B
-B --> C
-```
+    subgraph Infrastructure_Layer [Physical Network]
+        N1[Bio-Router: Bacteria Hub A]
+        N2[Bio-Router: Bacteria Hub B]
+        N3[Bio-Router: Bacteria Hub C]
+        
+        %% Edges as Mycelium
+        N1 -- "Mycelial Edge (Shortest Path)" --- N2
+        N2 -- "Mycelial Edge (Signal Diffusion)" --- N3
+        N3 -- "Mycelial Edge (Self-Healing)" --- N1
+    end
+
+    subgraph Evolution_Engine [Dynamic Optimization]
+        Algo{Physarum Algorithm}
+        DNA_Update[Genetic Firmware Update]
+    end
+
+    %% Connections
+    Waste -.->|Energy Supply| N1
+    Waste -.->|Energy Supply| N2
+    
+    Algo -->|Pathfinding| N1
+    Algo -->|Pathfinding| N2
+    
+    DNA_Update -->|Mutation Control| N1
+    DNA_Update -->|Mutation Control| N3
+
+    %% Communication Flow
+    Signal((Data Packet: DNA/Molecular)) --> N1
+    N1 -->|Action Potential| N2
+    N2 -->|Chemical Diffusion| N3
 
