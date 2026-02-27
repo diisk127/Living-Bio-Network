@@ -1,311 +1,285 @@
+# Living-Bio-Network
+## แผนการทำงาน Sprint (Sprint Plan) v1.0
 
+**เวอร์ชัน:** 1.0
+**Sprint ปัจจุบัน:** Alpha
+**วิธีการทำงาน:** Agile Scrum
+**ผู้จัดทำ:** นายธนนันต์ สาวิกัน (Scrum Master)
+**รายวิชา:** CP352005 Networks
 
-# The Living-Bio-Network (LBN)
+---
 
-#### Sprint Plan v2.0 (Bio-Engineering Architecture Version)
+## ทีมและบทบาท
 
+| ชื่อ | รหัสนักศึกษา | บทบาท |
+|:---|:---:|:---|
+| นางสาวกวินธิดา อนุนิวัฒน์ | 673380390-5 | Product Owner |
+| นายภควัฒน์ สุขมณี | 673380418-9 | System Architect |
+| นางสาวกัญญาวีร์ สิงห์ลี | 673380573-7 | QA |
+| นายณัฏฐชัย ผลดี | 673380581-8 | Backend Engineer |
+| นายธนนันต์ สาวิกัน | 673380586-8 | Scrum Master |
 
-# 1. Project Context
+---
 
-|Item	| Detail |
-|----------|----------------------|
-|Project	| Living-Bio-Network (LBN)|
-|Methodology	| Agile Scrum |
-|Sprint Duration |	2 Weeks (14 Days) |
-|Team Size	| 5–7 Members |
-|Branching Strategy	| GitFlow |
-|CI/CD	| GitHub Actions |
-|Deployment |	Docker (Simulation Phase) |
+## ข้อมูลโปรเจค
 
-# 2. Team Structure & Roles
+| หัวข้อ | รายละเอียด |
+|:---|:---|
+| โปรเจค | Living-Bio-Network (LBN) |
+| วิธีการทำงาน | Agile Scrum |
+| ความยาวแต่ละ Sprint | 2 สัปดาห์ (14 วัน) |
+| จำนวน Sprint ทั้งหมด | 4 Sprint (Alpha, Beta, Gamma, Delta) |
+| การจัดการ Branch | GitFlow |
+| CI/CD | GitHub Actions |
 
-|Role	| Responsibility|
-|----------|----------------------|
-|Product Owner |	Define Bio-Network Vision|
-|Scrum Master	| Facilitate Sprint Process|
-|Bio-System Engineer |	Biological Network Modeling|
-|Network Engineer	| Adaptive Routing Logic|
-|Security Engineer |	Genetic Key & Privacy|
-|Simulation Engineer	| Node Simulation Runtime|
-|DevOps	| CI/CD & Container Setup|
+---
 
+## โครงสร้าง Sprint
 
-
-# 3. Sprint Cadence
-
-Day 1: Sprint Planning
-
-Day 2–11: Development + Daily Standup
-
-Day 12–13: Testing + Integration
-
-Day 14: Sprint Review + Retrospective
-
-
-## Daily Standup:
-
-	•	What bio-behavior was implemented yesterday?
-	•	What will be developed today?
-	•	Any blockers in routing or simulation?
-
-
-# 4. Sprint Alpha – Bio Node Simulation Foundation
-
-### Objective
-
-สร้าง BioNode Runtime สำหรับจำลองโครงข่ายชีวภาพและสามารถส่ง BioSignal ระหว่าง Node ได้
-
-
-## 4 .1 Sprint Goal
-
-“BioNode เชื่อมต่อกันและส่ง BioSignal ผ่าน Adaptive Basic Routing ได้”
-
-
-## 4.2 Functional Scope
-	•	BioNode Class
-	•	BioNetworkState Model
-	•	Basic BioRouting Logic
-	•	Logging System
-	•	Unit Test Setup
-
-
-## 4.3 Architecture for Sprint Alpha
-
-#### Modules:
-
-	•	bionode/
-	•	bio_state/
-	•	bio_routing/
-	•	biosignal/
-	•	logger/
-	•	tests/
-
-
-## 4.4 Detailed Task Breakdown
-
-### BA-01: BioNode Runtime Skeleton
-
-#### class BioNode:
-```python
-    def __init__(self, node_id):
-        self.node_id = node_id
-        self.connected_nodes = []
-        self.status = "ALIVE"
-
-    def grow(self, node):
-        self.connected_nodes.append(node)
-
-    def transmit(self, signal):
-        for node in self.connected_nodes:
-            node.receive(signal)
-
-    def receive(self, signal):
-        print(f"[{self.node_id}] BioSignal received:", signal)
 ```
-#### Acceptance Criteria:
-	•	BioNode สามารถ grow connection ได้
-	•	ส่งและรับ BioSignal ได้
-	•	ไม่มี infinite loop
-
-### BA-02: BioNetworkState Model
-
-#### class BioNetworkState:
-```python
-    def __init__(self):
-        self.nodes = {}
-        self.fibers = []
-
-    def add_node(self, node):
-        self.nodes[node.node_id] = node
-
-    def add_fiber(self, source, target, density):
-        self.fibers.append({
-            "source": source,
-            "target": target,
-            "density": density
-        })
+วันที่ 1        : วางแผน Sprint
+วันที่ 2-11     : พัฒนาระบบ + Daily Standup
+วันที่ 12-13    : ทดสอบและรวมระบบ
+วันที่ 14       : Sprint Review + Retrospective
 ```
 
-#### Acceptance Criteria:
-	•	เพิ่ม Node ได้
-	•	เพิ่ม Fiber ได้
-	•	เก็บค่า density ถูกต้อง
+**Daily Standup ถามทุกวัน:**
+- เมื่อวานทำอะไรเสร็จไปบ้าง?
+- วันนี้จะทำอะไร?
+- มีอุปสรรคอะไรที่ติดขัดอยู่ไหม?
 
+---
 
-### BA-03: Adaptive Bio Routing
-```python
-def select_healthiest_fiber(fibers):
-    return max(fibers, key=lambda f: f["density"])
-```
-#### Acceptance Criteria:
-	•	เลือก fiber ที่ density สูงสุด
-	•	รองรับหลายเส้นทาง
+## เกณฑ์ความสำเร็จ (Definition of Done)
 
+Sprint จะถือว่าเสร็จสมบูรณ์เมื่อ:
+- ฟีเจอร์ทำงานใน Simulation ได้จริง
+- Unit Test Coverage ไม่ต่ำกว่า 80% (Sprint Alpha ใช้ 60%)
+- ไม่มี Critical Bug
+- เอกสารอัปเดตแล้ว
+- Demo ผ่านการตรวจสอบของ Product Owner
 
-### BA-04: Bio Logging Module
-```python
-import logging
+---
 
-logging.basicConfig(level=logging.INFO)
+## Sprint Alpha — สร้าง BioNode พื้นฐาน
 
-def log_bio_event(event):
-    logging.info("[BIO EVENT] " + event)
-```
-#### Acceptance Criteria:
-	•	Log แสดงสถานะ growth และ signal
-	•	ไม่กระทบ simulation
+**เป้าหมาย:** BioNode เชื่อมต่อกันและส่ง BioSignal ผ่านระบบหาเส้นทางเบื้องต้นได้
 
+### งานที่ต้องทำ
 
-### BA-05: Unit Testing Setup
-	•	ใช้ pytest
-	•	Test BioNode transmission
-	•	Test fiber selection
-	•	Coverage ≥ 60%
+| รหัสงาน | งาน | ผู้รับผิดชอบ | เกณฑ์ผ่าน |
+|:---|:---|:---|:---|
+| BA-01 | เขียน BioNode Runtime | ณัฏฐชัย | grow, transmit, receive ทำงานได้ ไม่วนลูป |
+| BA-02 | เขียน BioNetworkState | ณัฏฐชัย | เพิ่ม Node และ Fiber ได้ เก็บค่า density ถูกต้อง |
+| BA-03 | เขียนระบบหาเส้นทาง | ณัฏฐชัย + ภควัฒน์ | เลือก Fiber density สูงสุดได้ รองรับหลายเส้นทาง |
+| BA-04 | เขียนระบบ Log | ณัฏฐชัย | บันทึกสถานะได้ ไม่กระทบ Simulation |
+| BA-05 | ตั้งค่า Unit Test | กัญญาวีร์ | Coverage ไม่ต่ำกว่า 60% |
 
+### ตารางงานรายวัน
 
-## 4.5 Non-Functional Requirements (Sprint Alpha)
+**วันที่ 1 — วางแผน Sprint**
 
-|Category	|Requirement|
-|----------|----------------------|
-|Stability	|Node failure ไม่ทำให้ network collapse|
-|Scalability|	รองรับ ≥ 100 simulated BioNodes|
-|Performance	|Signal propagation ≤ 300ms|
+| กิจกรรม | ผู้รับผิดชอบ |
+|:---|:---|
+| ประชุมวางแผนงาน กำหนด Scope ของ Sprint Alpha | ธนนันต์ |
+| ตั้งค่า GitHub Repository และ CI Pipeline | ณัฏฐชัย |
+| ทบทวน Architecture ให้ทีมเข้าใจตรงกัน | ภควัฒน์ |
+| เขียน Test Plan Template | กัญญาวีร์ |
+| กำหนด Product Backlog และลำดับความสำคัญ | กวินธิดา |
 
+**วันที่ 2-3 — เขียน BioNode และ BioNetworkState**
 
+| กิจกรรม | ผู้รับผิดชอบ |
+|:---|:---|
+| เขียน Class BioNode พร้อม grow, transmit, receive | ณัฏฐชัย |
+| ออกแบบโครงสร้าง BioNode ให้สอดคล้องกับ Architecture | ภควัฒน์ |
+| เขียน Class BioNetworkState พร้อม add_node, add_fiber | ณัฏฐชัย |
+| เขียน Test Case สำหรับ BioNode และ BioNetworkState | กัญญาวีร์ |
+| อัปเดตเอกสาร | ธนนันต์ |
 
-## 4.6 Risks During Sprint Alpha
+**วันที่ 4-5 — เขียนระบบหาเส้นทางและ Log**
 
-|Risk|	Impact|	Mitigation|
-|----------|----------------------|------------|
-|Signal broadcast loop|	High|	Add visited tracking|
-|Density miscalculation|	Medium|	Add unit test|
-|Simulation lag|	Medium|	Limit scaling|
+| กิจกรรม | ผู้รับผิดชอบ |
+|:---|:---|
+| เขียน select_healthiest_fiber และ Logic การเลือกเส้นทาง | ณัฏฐชัย |
+| ตรวจสอบ Algorithm ให้สอดคล้องกับ Architecture | ภควัฒน์ |
+| เขียน log_bio_event และตั้งค่า Logging System | ณัฏฐชัย |
+| เขียน Test Case สำหรับระบบหาเส้นทางและ Log | กัญญาวีร์ |
 
+**วันที่ 6-7 — รวมทุก Module เข้าด้วยกัน**
 
+| กิจกรรม | ผู้รับผิดชอบ |
+|:---|:---|
+| รวม BioNode + BioNetworkState + Routing + Logging | ณัฏฐชัย |
+| ตรวจสอบว่าทุกส่วนทำงานร่วมกันได้ | ภควัฒน์ |
+| รัน Integration Test ตรวจสอบการส่ง BioSignal | กัญญาวีร์ |
+| อัปเดต Backlog | กวินธิดา |
 
-## 4.7 Deliverables
-	•	BioNode Simulation Engine
-	•	Adaptive Routing Demo
-	•	Unit Test Suite
-	•	Sprint Alpha Demo
+**วันที่ 8-9 — แก้บักและปรับปรุง**
 
+| กิจกรรม | ผู้รับผิดชอบ |
+|:---|:---|
+| แก้บักที่พบจาก Integration Test | ณัฏฐชัย |
+| ทดสอบ Edge Case เช่น Node ไม่มี Connection, Fiber ว่าง | กัญญาวีร์ |
+| ตรวจสอบว่าสัญญาณไม่วนลูปไม่รู้จบ | ภควัฒน์ |
+| จัดการ Blocker ที่เหลืออยู่ | ธนนันต์ |
 
-# 5. Sprint Beta – Evolution Engine
+**วันที่ 10-11 — ทดสอบระบบ**
 
-### Objective
+| กิจกรรม | ผู้รับผิดชอบ |
+|:---|:---|
+| รัน Test ทั้งหมด ตรวจสอบ Coverage ไม่ต่ำกว่า 60% | กัญญาวีร์ |
+| ทดสอบ Performance — Signal propagation ไม่เกิน 300ms | ณัฏฐชัย |
+| ทดสอบ Stability — Node ตายไม่ทำให้ Network ล่ม | กัญญาวีร์ |
 
-เพิ่มความสามารถการเติบโตและปรับโครงสร้างอัตโนมัติ
+**วันที่ 12-13 — เตรียม Demo และเอกสาร**
 
-#### Tasks
-	•	Fiber density decay
-	•	Traffic-based reinforcement
-	•	Auto growth algorithm
-	•	Topology evolution simulation
+| กิจกรรม | ผู้รับผิดชอบ |
+|:---|:---|
+| เตรียม Script สาธิตการส่ง BioSignal ระหว่าง Node | ณัฏฐชัย |
+| เตรียมรายงานผลการทดสอบ | กัญญาวีร์ |
+| อัปเดต README และเอกสารให้ตรงกับโค้ดจริง | ธนนันต์ |
+| ตรวจสอบว่า Deliverable ครบตาม Scope | กวินธิดา |
 
-#### Deliverables
-	•	EvolutionEngine class
-	•	Efficiency metrics report
-	•	Before/After topology comparison
+**วันที่ 14 — Sprint Review และ Retrospective**
 
+| กิจกรรม | ผู้รับผิดชอบ |
+|:---|:---|
+| สาธิต BioNode Simulation | ณัฏฐชัย |
+| นำเสนอผล Test Coverage และ Performance | กัญญาวีร์ |
+| ดำเนิน Sprint Review และ Retrospective | ธนนันต์ |
+| อนุมัติว่า Sprint Alpha ผ่านเกณฑ์ | กวินธิดา |
 
-# 6. Sprint Gamma – BioSignal Communication Layer
+### สิ่งที่ต้องส่งเมื่อสิ้น Sprint Alpha
 
-### Objective
+| ชิ้นงาน | เจ้าของ | เกณฑ์ผ่าน |
+|:---|:---|:---|
+| BioNode Simulation Engine | ณัฏฐชัย | grow, transmit, receive ทำงานได้ ไม่มี infinite loop |
+| ระบบหาเส้นทางเบื้องต้น | ณัฏฐชัย + ภควัฒน์ | เลือก Fiber density สูงสุดได้ถูกต้อง |
+| Unit Test Suite | กัญญาวีร์ | Coverage ไม่ต่ำกว่า 60% ไม่มี Critical Bug |
+| Sprint Alpha Demo | ทุกคน | ส่ง BioSignal End-to-end ได้จริง |
+| เอกสารอัปเดต | ธนนันต์ | README และ Spec ตรงกับโค้ดจริง |
 
-สร้าง BioPacket และ Bio Transmission Protocol
+### ความเสี่ยง Sprint Alpha
 
-#### Tasks
-	•	Define BioPacket schema
-	•	Implement encoding logic
-	•	Build transmission handler
-	•	Validate integrity
+| ความเสี่ยง | ผลกระทบ | วิธีรับมือ |
+|:---|:---|:---|
+| สัญญาณวนลูปไม่รู้จบ | สูง | เพิ่มระบบตรวจจับการวนซ้ำใน BioNode |
+| คำนวณ Density ผิดพลาด | ปานกลาง | เขียน Unit Test ครอบคลุมทุกกรณี |
+| Simulation ช้าเมื่อ Node เยอะ | ปานกลาง | จำกัดไว้ที่ 100 Node ก่อน |
 
-#### Deliverables
-	•	BioSignal Protocol v1.0
-	•	Secure transmission demo
+---
 
+## Sprint Beta — ระบบวิวัฒนาการอัตโนมัติ
 
-# 7. Sprint Delta – Structural Privacy Engine
+**เป้าหมาย:** เครือข่ายปรับโครงสร้างและงอกเส้นทางใหม่ได้อัตโนมัติ
 
-### Objective
+### งานที่ต้องทำ
 
-กำหนดความเป็นส่วนตัวระดับโครงสร้างชีวภาพ
+| งาน | ผู้รับผิดชอบ | เกณฑ์ผ่าน |
+|:---|:---|:---|
+| ระบบลด Fiber Density เมื่อไม่ใช้งาน | ณัฏฐชัย | ค่า Density ลดลงถูกต้อง |
+| ระบบเพิ่ม Density เมื่อใช้งานหนาแน่น | ณัฏฐชัย | ค่า Density เพิ่มขึ้นถูกต้อง |
+| ระบบสร้างเส้นทางใหม่อัตโนมัติ | ณัฏฐชัย + ภควัฒน์ | สร้างเส้นทางใหม่ได้จริงเมื่อ Traffic สูง |
+| ระบบตัดเส้นทางที่ประสิทธิภาพต่ำ | ณัฏฐชัย | ตัด Route ที่ Efficiency ต่ำกว่าเกณฑ์ได้ |
+| วัดประสิทธิภาพก่อน-หลัง Evolution | กัญญาวีร์ | เห็นความแตกต่างชัดเจน |
 
-#### Tasks
-	•	Genetic Key schema
-	•	Identity-bound decoding
-	•	Selective visibility routing
-	•	Security simulation
+### สิ่งที่ต้องส่งเมื่อสิ้น Sprint Beta
 
-#### Deliverables
-	•	Privacy module
-	•	Security validation report
+| ชิ้นงาน | เจ้าของ |
+|:---|:---|
+| EvolutionEngine Class | ณัฏฐชัย |
+| รายงานวัดประสิทธิภาพ | กัญญาวีร์ |
+| เปรียบเทียบ Topology ก่อน-หลัง | ณัฏฐชัย |
+| Unit Test Coverage ไม่ต่ำกว่า 80% | กัญญาวีร์ |
 
+---
 
-# 8. Sprint Epsilon – Environmental Adaptation Layer
+## Sprint Gamma — ระบบส่งสัญญาณชีวภาพ
 
-### Objective
+**เป้าหมาย:** ส่ง BioPacket แบบมีโปรโตคอลและตรวจสอบความถูกต้องได้
 
-ให้เครือข่ายตอบสนองต่อสภาพแวดล้อม
+### งานที่ต้องทำ
 
-#### Tasks
-	•	Temperature simulation
-	•	Moisture impact modeling
-	•	Stress-based topology adjustment
-	•	Adaptive throttling logic
+| งาน | ผู้รับผิดชอบ | เกณฑ์ผ่าน |
+|:---|:---|:---|
+| ออกแบบโครงสร้าง BioPacket | ภควัฒน์ | กำหนดทุก Field ครบ |
+| เขียนระบบเข้ารหัส-ถอดรหัส | ณัฏฐชัย | เข้ารหัสแล้วถอดกลับได้ถูกต้อง |
+| เขียนระบบส่ง Packet | ณัฏฐชัย | ส่งถึงปลายทางได้ |
+| เขียนระบบตรวจสอบความครบถ้วน | กัญญาวีร์ | จับ Packet เสียหายได้ |
+| ระบบส่งสัญญาณหลายประเภทพร้อมกัน | ณัฏฐชัย | สัญญาณไม่รบกวนกัน |
 
-#### Deliverables
-	•	Environment simulation module
-	•	Adaptive behavior report
+### สิ่งที่ต้องส่งเมื่อสิ้น Sprint Gamma
 
+| ชิ้นงาน | เจ้าของ |
+|:---|:---|
+| BioSignal Protocol v1.0 | ภควัฒน์ + ณัฏฐชัย |
+| Demo การส่ง BioPacket แบบปลอดภัย | ณัฏฐชัย |
+| รายงานผลการทดสอบ | กัญญาวีร์ |
 
-# 9. Definition of Done (DoD)
+---
 
-### Sprint จะเสร็จเมื่อ:
-	•	Feature ทำงานใน simulation ได้จริง
-	•	Unit Test Coverage ≥ 80%
-	•	ไม่มี Critical Bug
-	•	Documentation update
-	•	Demo ผ่าน
+## Sprint Delta — ระบบความเป็นส่วนตัว
 
+**เป้าหมาย:** เฉพาะ Node ที่มี Genetic Key ถูกต้องเท่านั้นที่เข้าถึงข้อมูลได้
 
-# 10. Metrics & Tracking
+### งานที่ต้องทำ
 
-### KPIs ต่อ Sprint:
-	•	Simulation Stability Score
-	•	Fiber Efficiency Index
-	•	Test Coverage %
-	•	Evolution Rate
-	•	Technical Debt Score
+| งาน | ผู้รับผิดชอบ | เกณฑ์ผ่าน |
+|:---|:---|:---|
+| ออกแบบรูปแบบ Genetic Key | ภควัฒน์ | กำหนด Format ชัดเจน |
+| เขียนระบบถอดรหัสเฉพาะผู้มีสิทธิ์ | ณัฏฐชัย | Node ที่ Key ไม่ตรงเข้าไม่ได้ |
+| เขียนระบบส่งข้อมูลเฉพาะผู้รับที่กำหนด | ณัฏฐชัย | ส่งได้เฉพาะ Node ที่มีสิทธิ์ |
+| ทดสอบการโจมตีระบบ | กัญญาวีร์ | ผ่านทุก Security Scenario |
 
+### สิ่งที่ต้องส่งเมื่อสิ้น Sprint Delta
 
-# 11. Continuous Integration
-	•	Auto test on pull request
-	•	Code review required
-	•	Linting enforcement
-	•	Branch protection enabled
+| ชิ้นงาน | เจ้าของ |
+|:---|:---|
+| Privacy Module | ณัฏฐชัย |
+| รายงานผลการทดสอบความปลอดภัย | กัญญาวีร์ |
+| Demo แสดงว่า Node ที่ Key ไม่ตรงเข้าไม่ได้ | ณัฏฐชัย |
 
+---
 
-# 12. Sprint Review Output
+## แผนรับมือเมื่อเกิดปัญหา
 
-### ทุก Sprint ต้องมี:
-	•	Live Simulation Demo
-	•	Architecture Update
-	•	Performance Metrics
-	•	Risk Reassessment
+**ทำงานช้ากว่ากำหนดเกิน 2 วัน**
+ตัดฟีเจอร์ที่ไม่จำเป็นออก เพิ่ม Pair Programming ระหว่าง ณัฏฐชัย และ ภควัฒน์
 
+**รวมระบบแล้วพัง**
+ย้อนกลับ Version ก่อนหน้าที่ใช้งานได้ ทดสอบทีละ Layer ใหม่ตั้งแต่ต้น
 
-# 13. Long-Term Vision Alignment
+**สมาชิกขาดเกิน 2 วัน**
+กระจายงานให้คนที่เหลือ ทำ Knowledge Transfer ทันที
 
-### Sprint ทุกตัวต้อง align กับ Vision หลักของ LBN:
-	•	Self-Evolving Bio Architecture
-	•	Bio-Signal Communication
-	•	Structural Genetic Privacy
-	•	Sustainable Infrastructure
+**ระบบช้าเกินไป**
+จำกัด Node ไว้ก่อน แล้วค่อย Optimize ใน Sprint ถัดไป
 
+---
 
-# 14. Conclusion
+## ตัวชี้วัดความสำเร็จ (KPIs)
 
-#### Sprint Plan นี้ทำให้ Living-Bio-Network พัฒนาเป็นลำดับขั้น:
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---|
+| Simulation Stability | Node ตายไม่ทำให้ Network ล่ม |
+| Test Coverage | ไม่ต่ำกว่า 80% (Alpha ใช้ 60%) |
+| Signal Performance | ส่งสัญญาณได้ภายใน 300ms |
+| Evolution Rate | งอกเส้นทางใหม่ได้ภายใน 1 วินาที |
+| Bug Count | ไม่มี Critical Bug ก่อน Demo |
 
-Simulation Foundation → Evolution Engine → Bio Communication → Structural Privacy → Environmental Adaptation
+---
+
+## ลายเซ็นอนุมัติ
+
+| ชื่อ | บทบาท | วันที่ |
+|:---|:---|:---:|
+| นางสาวกวินธิดา อนุนิวัฒน์ | Product Owner | |
+| นายภควัฒน์ สุขมณี | System Architect | |
+| นางสาวกัญญาวีร์ สิงห์ลี | QA | |
+| นายณัฏฐชัย ผลดี | Backend Engineer | |
+| นายธนนันต์ สาวิกัน | Scrum Master | |
+
+---
+
+*Living-Bio-Network Sprint Plan v1.0 — CP352005 Networks*
