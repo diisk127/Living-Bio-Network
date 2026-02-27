@@ -297,16 +297,5 @@ BioNode → ระบบเครือข่าย → ระบบหาเส
 
 ---
 
-## 7. ลายเซ็นอนุมัติ
-
-| ชื่อ | บทบาท | วันที่ |
-|:---|:---|:---:|
-| นางสาวกวินธิดา อนุนิวัฒน์ | Product Owner | |
-| นายภควัฒน์ สุขมณี | System Architect | |
-| นางสาวกัญญาวีร์ สิงห์ลี | QA | |
-| นายณัฏฐชัย ผลดี | Backend Engineer | |
-| นายธนนันต์ สาวิกัน | Scrum Master | |
-
----
 
 *Living-Bio-Network Implementation Plan v1.0 — CP352005 Networks*
